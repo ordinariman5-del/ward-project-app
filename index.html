@@ -1,3 +1,4 @@
+HTML
 <!DOCTYPE html>
 <html lang="bn">
 <head>
@@ -152,3 +153,179 @@
                 </div>
             </form>
         </div>
+    </div>
+
+    <!-- JavaScript code with initial data preservation -->
+    <script>
+        // মূল তথ্যসমূহ (আগের প্রকল্পের ডেটা)
+        const defaultProjects = [
+            {
+                ward: "২৭ নং দক্ষিণ আগ্রাবাদ",
+                name: "ধর্ম মন্ত্রণালয় অনুদান",
+                phone: "অফিসিয়াল",
+                nid: "সংরক্ষিত",
+                address: "২৭ নং ওয়ার্ড এলাকা",
+                title: "মসজিদ, মন্দির ও দুঃস্থদের আবেদন",
+                desc: "ধর্ম মন্ত্রণালয় কর্তৃক বরাদ্দকৃত মসজিদ, মন্দির ও দুঃস্থ মুসলিমদের আবেদনের প্রেক্ষিতে ২৭ লক্ষ টাকার অনুদান আনয়ন ও বিতরণ।",
+                amount: "২৭ লক্ষ টাকা",
+                images: [],
+                date: "২০২৬-০৩-০৪",
+                status: "বিতরণ সম্পন্ন"
+            },
+            {
+                ward: "২৭ নং দক্ষিণ আগ্রাবাদ",
+                name: "টি.আর কর্মসূচী",
+                phone: "অফিসিয়াল",
+                nid: "সংরক্ষিত",
+                address: "২৭ নং ওয়ার্ড এলাকা",
+                title: "টি.আর ৩০ লক্ষ টাকা বরাদ্দ",
+                desc: "টি.আর কর্মসূচির আওতাধীন ৩০ লক্ষ টাকা নগদ বরাদ্দ আনয়ন ও প্রকল্প আকারে বিতরণ।",
+                amount: "৩০ লক্ষ টাকা",
+                images: [],
+                date: "২০২৬-০৩-০৪",
+                status: "বিতরণ সম্পন্ন"
+            },
+            {
+                ward: "২৭ নং দক্ষিণ আগ্রাবাদ",
+                name: "টি.আর কর্মসূচী",
+                phone: "অফিসিয়াল",
+                nid: "সংরক্ষিত",
+                address: "২৭ নং ওয়ার্ড এলাকা",
+                title: "টি.আর ৯০ লক্ষ টাকা বরাদ্দ",
+                desc: "টি.আর কর্মসূচির আওতাধীন ৯০ লক্ষ টাকা নগদ বরাদ্দ আনয়ন ও প্রকল্প আকারে বিতরণ।",
+                amount: "৯০ লক্ষ টাকা",
+                images: [],
+                date: "২০২৬-০৩-০৪",
+                status: "অনুমোদিত ও চলমান"
+            }
+        ];
+
+        function openModal() {
+            document.getElementById('projectModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('projectModal').classList.add('hidden');
+        }
+
+        function loadProjects() {
+            let savedProjects = JSON.parse(localStorage.getItem('wardProjects')) || [];
+            let projects = [...savedProjects, ...defaultProjects];
+            
+            let tbody = document.getElementById('projectTableBody');
+            tbody.innerHTML = '';
+            
+            document.getElementById('totalCount').innerText = projects.length;
+
+            projects.forEach((item) => {
+                let imagesHtml = '';
+                if (item.images && item.images.length > 0) {
+                    imagesHtml = `<div class="flex gap-1 flex-wrap">`;
+                    item.images.forEach(img => {
+                        imagesHtml += `<a href="${img}" target="_blank"><img src="${img}" class="w-9 h-9 object-cover rounded border hover:scale-105 transition"></a>`;
+                    });
+                    imagesHtml += `</div>`;
+                } else {
+                    imagesHtml = `<span class="text-slate-400 text-xs">ছবি নেই</span>`;
+                }
+
+                let statusBadge = item.status ? `<span class="inline-block mt-1 px-2 py-0.5 text-[10px] font-semibold bg-emerald-100 text-emerald-800 rounded-full">${item.status}</span>` : '';
+
+                let row = `
+                    <tr class="hover:bg-slate-50 transition border-b border-slate-100">
+                        <td class="p-3">
+                            <span class="inline-block bg-sky-100 text-sky-800 text-xs px-2 py-1 rounded-md font-semibold">${item.ward}</span>
+                        </td>
+                        <td class="p-3">
+                            <span class="font-bold text-slate-900 block">${item.name}</span>
+                            <span class="text-xs text-brand-700 font-semibold block">${item.title}</span>
+                            <span class="text-xs text-slate-600 block mt-0.5">${item.desc}</span>
+                        </td>
+                        <td class="p-3 text-xs text-slate-700">
+                            <span class="block font-medium">NID: ${item.nid}</span>
+                            <span class="text-slate-500">${item.address}</span>
+                            <span class="text-slate-500 block"><i class="fa-solid fa-phone text-[10px]"></i> ${item.phone}</span>
+                        </td>
+                        <td class="p-3 font-semibold text-slate-800 text-xs">${item.amount || 'নির্ধারিত নয়'}</td>
+                        <td class="p-3">${imagesHtml}</td>
+                        <td class="p-3 text-xs text-slate-500">
+                            ${item.date}
+                            ${statusBadge}
+                        </td>
+                    </tr>
+                `;
+                tbody.innerHTML += row;
+            });
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+
+            let imageInput = document.getElementById('projectImages');
+            let images = [];
+            let filesCount = Math.min(imageInput.files.length, 5);
+
+            function processFiles(index) {
+                if (index < filesCount) {
+                    let reader = new FileReader();
+                    reader.onload = function(e) {
+                        images.push(e.target.result);
+                        processFiles(index + 1);
+                    }
+                    reader.readAsDataURL(imageInput.files[index]);
+                } else {
+                    saveData(images);
+                }
+            }
+
+            if (filesCount > 0) {
+                processFiles(0);
+            } else {
+                saveData([]);
+            }
+        }
+
+        function saveData(images) {
+            let newEntry = {
+                ward: document.getElementById('wardNo').value,
+                name: document.getElementById('applicantName').value,
+                phone: document.getElementById('applicantPhone').value,
+                nid: document.getElementById('applicantNID').value,
+                title: "নতুন আবেদন",
+                address: document.getElementById('applicantAddress').value,
+                desc: document.getElementById('projectDesc').value,
+                amount: document.getElementById('projectAmount').value,
+                images: images,
+                date: new Date().toLocaleDateString('bn-BD'),
+                status: "নতুন সাবমিশন"
+            };
+
+            let projects = JSON.parse(localStorage.getItem('wardProjects')) || [];
+            projects.unshift(newEntry);
+            localStorage.setItem('wardProjects', JSON.stringify(projects));
+
+            document.getElementById('submissionForm').reset();
+            closeModal();
+            loadProjects();
+            alert('আপনার আবেদনটি সফলভাবে সাবমিট হয়েছে এবং টেবিলে যুক্ত হয়েছে!');
+        }
+
+        window.onload = loadProjects;
+
+        function filterTable() {
+            let input = document.getElementById('searchInput').value.toLowerCase();
+            let rows = document.getElementById('projectTableBody').getElementsByTagName('tr');
+
+            for (let i = 0; i < rows.length; i++) {
+                let text = rows[i].textContent.toLowerCase();
+                if (text.includes(input)) {
+                    rows[i].style.display = "";
+                } else {
+                    rows[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+</html>
+এখন আপনার তথ্যগুলোও সুরক্ষিত থাকবে, পাশাপাশি সাধারণ মানুষের নতুন আবেদনগুলো সরাসরি এই টেবিলে এসে জমা হতে পারবে।
