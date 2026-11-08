@@ -8,7 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts: Noto Sans Bengali (স্পষ্ট ও সোজা ফন্টের জন্য) -->
+    <!-- Google Fonts: Noto Sans Bengali (স্পষ্ট ও সহজ বাংলা ফন্ট) -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
@@ -30,7 +30,6 @@
         }
     </script>
     <style>
-        /* ফন্ট আরও স্পষ্ট ও গাঢ় করার জন্য অতিরিক্ত স্টাইল */
         body {
             font-family: 'Noto Sans Bengali', sans-serif;
             text-rendering: optimizeLegibility;
@@ -49,10 +48,10 @@
                 </div>
                 <div>
                     <h1 class="text-xl sm:text-2xl font-bold tracking-wide">১১ আসনের উন্নয়ন ও প্রকল্প তথ্যভান্ডার</h1>
-                    <p class="text-xs sm:text-sm text-slate-300">এলাকার উন্নয়ন, অনুদান ও সাহায্য সহযোগিতার আবেদন পোর্টাল</p>
+                    <p class="text-xs sm:text-sm text-slate-300">২৭ থেকে ৪১ নং ওয়ার্ডের প্রকল্প, অনুদান ও বিবরণ ব্যবস্থাপনা</p>
                 </div>
             </div>
-            <!-- নতুন প্রকল্প বা আবেদন যোগ করার বাটন -->
+            <!-- নতুন আবেদন বা প্রজেক্ট যুক্ত করার বাটন -->
             <button onclick="openModal()" class="bg-brand-600 hover:bg-brand-700 text-white px-5 py-2.5 rounded-lg font-medium transition shadow flex items-center gap-2">
                 <i class="fa-solid fa-plus"></i> সাহায্য বা প্রকল্পের আবেদন করুন
             </button>
@@ -66,10 +65,10 @@
         <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 mb-6 flex flex-col md:flex-row gap-4 justify-between items-center">
             <div class="w-full md:w-1/3">
                 <label class="block text-xs font-semibold text-slate-600 mb-1">সরাসরি সার্চ করুন:</label>
-                <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="আবেদনকারী, প্রজেক্ট বা বিবরণ লিখে খুঁজুন..." class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-600 text-sm">
+                <input type="text" id="searchInput" onkeyup="filterTable()" placeholder="ওয়ার্ড, আবেদনকারী বা বিবরণ লিখে খুঁজুন..." class="w-full px-3 py-2 border border-slate-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-600 text-sm">
             </div>
             <div class="text-sm text-slate-700 font-medium">
-                মোট সাবমিশন: <span id="totalCount" class="font-bold text-brand-600">0</span> টি
+                মোট প্রজেক্ট ও আবেদন তথ্য: <span id="totalCount" class="font-bold text-brand-600">0</span> টি
             </div>
         </div>
 
@@ -79,16 +78,16 @@
                 <table class="w-full text-left border-collapse">
                     <thead>
                         <tr class="bg-slate-100 text-slate-700 text-xs sm:text-sm border-b border-slate-200">
-                            <th class="p-3 font-semibold">আবেদনকারী ও যোগাযোগের তথ্য</th>
+                            <th class="p-3 font-semibold">ওয়ার্ড নং</th>
+                            <th class="p-3 font-semibold">আবেদনকারী / বিষয় ও বিস্তারিত বিবরণ</th>
                             <th class="p-3 font-semibold">এনআইডি ও ঠিকানা</th>
-                            <th class="p-3 font-semibold">প্র প্রকল্পের বিষয় ও বিবরণ</th>
-                            <th class="p-3 font-semibold">অনুমোদিত পরিমাণ</th>
+                            <th class="p-3 font-semibold">বরাদ্দ / পরিমাণ</th>
                             <th class="p-3 font-semibold">সংযুক্ত ছবি</th>
-                            <th class="p-3 font-semibold">তারিখ</th>
+                            <th class="p-3 font-semibold">তারিখ ও অবস্থা</th>
                         </tr>
                     </thead>
                     <tbody id="projectTableBody" class="divide-y divide-slate-200 text-sm">
-                        <!-- ডাইনামিক ডেটা এখানে যুক্ত হবে -->
+                        <!-- তথ্য ডাইনামিকভাবে আসবে -->
                     </tbody>
                 </table>
             </div>
@@ -106,8 +105,8 @@
             <form id="submissionForm" onsubmit="handleFormSubmit(event)" class="space-y-4">
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">আবেদনকারীর নাম *</label>
-                        <input type="text" id="applicantName" required class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-600 focus:outline-none" placeholder="পূর্ণ নাম লিখুন">
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">আবেদনকারীর নাম / প্রজেক্ট টাইটেল *</label>
+                        <input type="text" id="applicantName" required class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-600 focus:outline-none" placeholder="নাম বা বিষয় লিখুন">
                     </div>
                     <div>
                         <label class="block text-xs font-semibold text-slate-700 mb-1">মোবাইল নম্বর *</label>
@@ -121,28 +120,28 @@
                         <input type="text" id="applicantNID" required class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-600 focus:outline-none" placeholder="NID নম্বর লিখুন">
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">সাহায্য বা প্রকল্পের ধরণ *</label>
-                        <input type="text" id="projectTitle" required class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-600 focus:outline-none" placeholder="যেমন: চিকিৎসা সহায়তা / ঘর মেরামত">
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">ওয়ার্ড নির্বাচন করুন *</label>
+                        <input type="text" id="wardNo" required class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-600 focus:outline-none" placeholder="যেমন: ২৭ নং দক্ষিণ আগ্রাবাদ">
                     </div>
                 </div>
 
                 <div>
                     <label class="block text-xs font-semibold text-slate-700 mb-1">পূর্ণাঙ্গ ঠিকানা *</label>
-                    <textarea id="applicantAddress" rows="2" required class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-600 focus:outline-none" placeholder="গ্রাম/মহল্লা, ওয়ার্ড নং, উপজেলা"></textarea>
+                    <textarea id="applicantAddress" rows="2" required class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-600 focus:outline-none" placeholder="গ্রাম/মহল্লা, রোড নং, এলাকা"></textarea>
                 </div>
 
                 <div>
                     <label class="block text-xs font-semibold text-slate-700 mb-1">প্রকল্প বা সাহায্যের বিস্তারিত বিবরণ *</label>
-                    <textarea id="projectDesc" rows="3" required class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-600 focus:outline-none" placeholder="আপনার সাহায্যের কারণ বা প্রকল্পের বিবরণ লিখুন..."></textarea>
+                    <textarea id="projectDesc" rows="3" required class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-600 focus:outline-none" placeholder="বিবরণ লিখুন..."></textarea>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">প্রয়োজনীয় অনুদান / পরিমাণ (ঐচ্ছিক)</label>
-                        <input type="text" id="projectAmount" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-600 focus:outline-none" placeholder="যেমন: ৫০,০০০ টাকা">
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">বরাদ্দ / প্রয়োজনীয় পরিমাণ</label>
+                        <input type="text" id="projectAmount" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-brand-600 focus:outline-none" placeholder="যেমন: ২৭ লক্ষ টাকা">
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">ছবি সংযুক্ত করুন (সর্বোচ্চ ৫টি ছবি)</label>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">ছবি সংযুক্ত করুন (সর্বোচ্চ ৫টি)</label>
                         <input type="file" id="projectImages" accept="image/*" multiple class="w-full text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-xs file:font-semibold file:bg-brand-50 file:text-brand-700 hover:file:bg-brand-100">
                     </div>
                 </div>
@@ -153,132 +152,3 @@
                 </div>
             </form>
         </div>
-    </div>
-
-    <!-- JavaScript for Managing Form Data -->
-    <script>
-        function openModal() {
-            document.getElementById('projectModal').classList.remove('hidden');
-        }
-
-        function closeModal() {
-            document.getElementById('projectModal').classList.add('hidden');
-        }
-
-        // লোকাল স্টোরেজ থেকে ডেটা লোড করা
-        function loadProjects() {
-            let projects = JSON.parse(localStorage.getItem('wardProjects')) || [];
-            let tbody = document.getElementById('projectTableBody');
-            tbody.innerHTML = '';
-            
-            document.getElementById('totalCount').innerText = projects.length;
-
-            if (projects.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="6" class="text-center py-6 text-slate-400">কোনো তথ্য পাওয়া যায়নি। নতুন আবেদন যোগ করুন।</td></tr>`;
-                return;
-            }
-
-            projects.forEach((item, index) => {
-                let imagesHtml = '';
-                if (item.images && item.images.length > 0) {
-                    imagesHtml = `<div class="flex gap-1 flex-wrap">`;
-                    item.images.forEach(img => {
-                        imagesHtml += `<a href="${img}" target="_blank"><img src="${img}" class="w-10 h-10 object-cover rounded border hover:scale-105 transition"></a>`;
-                    });
-                    imagesHtml += `</div>`;
-                } else {
-                    imagesHtml = `<span class="text-slate-400 text-xs">ছবি নেই</span>`;
-                }
-
-                let row = `
-                    <tr class="hover:bg-slate-50 transition border-b border-slate-100">
-                        <td class="p-3">
-                            <span class="font-bold text-slate-900 block">${item.name}</span>
-                            <span class="text-xs text-slate-600"><i class="fa-solid fa-phone"></i> ${item.phone}</span>
-                        </td>
-                        <td class="p-3 text-xs text-slate-700">
-                            <span class="block font-medium">NID: ${item.nid}</span>
-                            <span class="text-slate-600">${item.address}</span>
-                        </td>
-                        <td class="p-3">
-                            <span class="font-semibold text-brand-700 block text-xs">${item.title}</span>
-                            <span class="text-xs text-slate-700">${item.desc}</span>
-                        </td>
-                        <td class="p-3 font-semibold text-slate-800">${item.amount || 'নির্ধারিত নয়'}</td>
-                        <td class="p-3">${imagesHtml}</td>
-                        <td class="p-3 text-xs text-slate-500">${item.date}</td>
-                    </tr>
-                `;
-                tbody.innerHTML += row;
-            });
-        }
-
-        // ফর্ম সাবমিট হ্যান্ডেল করা
-        function handleFormSubmit(event) {
-            event.preventDefault();
-
-            let imageInput = document.getElementById('projectImages');
-            let images = [];
-            let filesCount = Math.min(imageInput.files.length, 5); // সর্বোচ্চ ৫টি ছবি
-
-            function processFiles(index) {
-                if (index < filesCount) {
-                    let reader = new FileReader();
-                    reader.onload = function(e) {
-                        images.push(e.target.result);
-                        processFiles(index + 1);
-                    }
-                    reader.readAsDataURL(imageInput.files[index]);
-                } else {
-                    saveData(images);
-                }
-            }
-
-            if (filesCount > 0) {
-                processFiles(0);
-            } else {
-                saveData([]);
-            }
-        }
-
-        function saveData(images) {
-            let newEntry = {
-                name: document.getElementById('applicantName').value,
-                phone: document.getElementById('applicantPhone', '').value,
-                nid: document.getElementById('applicantNID').value,
-                title: document.getElementById('projectTitle').value,
-                address: document.getElementById('applicantAddress').value,
-                desc: document.getElementById('projectDesc').value,
-                amount: document.getElementById('projectAmount').value,
-                images: images,
-                date: new Date().toLocaleDateString('bn-BD')
-            };
-
-            let projects = JSON.parse(localStorage.getItem('wardProjects')) || [];
-            projects.unshift(newEntry);
-            localStorage.setItem('wardProjects', JSON.stringify(projects));
-
-            document.getElementById('submissionForm').reset();
-            closeModal();
-            loadProjects();
-            alert('আপনার আবেদনটি সফলভাবে সাবমিট হয়েছে এবং টেবিলে যুক্ত হয়েছে!');
-        }
-
-        window.onload = loadProjects;
-
-        function filterTable() {
-            let input = document.getElementById('searchInput').value.toLowerCase();
-            let rows = document.getElementById('projectTableBody').getElementsByTagName('tr');
-
-            for (let i = 0; i < rows.length; i++) {
-                let text = rows[i].textContent.toLowerCase();
-                if (text.includes(input)) {
-                    rows[i].style.display = "";
-                } else {
-                    rows[i].style.display = "none";
-                }
-            }
-        }
-    </script>
-</body>
-</html>
