@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>তথ্য ডিরেক্টরি ও অনুসন্ধান পোর্টাল</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts (Hind Siliguri for Bengali) -->
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Hind Siliguri', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#075985',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: #f8fafc;
+        }
+        /* Custom scrollbar for table */
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 6px;
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased min-h-screen flex flex-col justify-between">
+
+    <!-- Top Navigation Header -->
+    <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <!-- Logo / Title -->
+            <div class="flex items-center space-x-3 space-x-reverse">
+                <div class="w-10 h-10 rounded-xl bg-brand-600 text-white flex items-center justify-center shadow-md shadow-brand-500/20">
+                    <i class="fa-solid fa-layer-group text-lg"></i>
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold text-slate-900 leading-tight">ওয়ার্ড ভিত্তিক উন্নয়ন প্রকল্প ও সাহায্য বিবরণী পোর্টাল</h1>
+                    <p class="text-xs text-slate-500">২৭ থেকে ৪১ নং ওয়ার্ডের প্রকল্প, অনুদান ও বিতরণ ব্যবস্থাপনা</p>
+                </div>
+            </div>
+
+            <!-- Action Button (Add New Entry Modal Trigger) -->
+            <div>
+                <button onclick="openModal()" class="inline-flex items-center gap-2 bg-brand-600 hover:bg-brand-700 text-white px-4 py-2 rounded-lg font-medium text-sm transition-all shadow-sm active:scale-95">
+                    <i class="fa-solid fa-plus"></i>
+                    <span class="hidden sm:inline">নতুন প্রকল্প যোগ করুন</span>
+                    <span class="sm:hidden">যোগ করুন</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 w-full flex-grow">
+        
+        <!-- Search & Dual Dropdown Filter Controls Section -->
+        <section class="bg-white rounded-2xl p-4 sm:p-6 shadow-sm border border-slate-200/80 mb-6 transition-all space-y-4">
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <!-- 1. Ward Selection Dropdown -->
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+                        <i class="fa-solid fa-location-dot text-brand-600"></i> ওয়ার্ড নির্বাচন করুন:
+                    </label>
+                    <div class="relative">
+                        <select 
+                            id="wardFilter" 
+                            onchange="filterData()"
+                            class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-semibold focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white appearance-none cursor-pointer text-sm pr-10"
+                        >
+                            <option value="ALL">সকল ওয়ার্ড (২৭-৪১)</option>
+                            <!-- Dynamically populated Wards -->
+                        </select>
+                        <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-slate-400">
+                            <i class="fa-solid fa-chevron-down text-xs"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Project Category Dropdown -->
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+                        <i class="fa-solid fa-list-check text-brand-600"></i> প্রকল্পের বিবরণ / বিষয়:
+                    </label>
+                    <div class="relative">
+                        <select 
+                            id="categoryFilter" 
+                            onchange="filterData()"
+                            class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-800 font-semibold focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white appearance-none cursor-pointer text-sm pr-10"
+                        >
+                            <option value="ALL">সকল প্রকল্প ও অনুদান</option>
+                            <!-- Dynamically populated Categories -->
+                        </select>
+                        <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none text-slate-400">
+                            <i class="fa-solid fa-chevron-down text-xs"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Search Box -->
+                <div>
+                    <label class="block text-xs font-bold text-slate-500 uppercase tracking-wider mb-1.5 flex items-center gap-1.5">
+                        <i class="fa-solid fa-magnifying-glass text-brand-600"></i> সরাসরি সার্চ করুন:
+                    </label>
+                    <div class="relative">
+                        <input 
+                            type="text" 
+                            id="searchInput" 
+                            onkeyup="filterData()"
+                            placeholder="প্রকল্পের নাম, পরিমাণ বা বিবরণ..." 
+                            class="w-full pl-9 pr-8 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:bg-white transition-all text-sm"
+                        >
+                        <button id="clearSearch" onclick="clearSearchInput()" class="hidden absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600">
+                            <i class="fa-solid fa-circle-xmark text-xs"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Filter Chips for Wards -->
+            <div class="pt-3 border-t border-slate-100 flex items-center gap-2 overflow-x-auto custom-scrollbar pb-1">
+                <span class="text-xs font-bold text-slate-400 whitespace-nowrap uppercase tracking-wider mr-1">ওয়ার্ড ফিল্টার:</span>
+                <div id="wardChips" class="flex items-center gap-1.5">
+                    <!-- Ward Chips inserted dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats and Results Counter -->
+        <div class="flex items-center justify-between mb-4 px-1">
+            <p class="text-sm text-slate-600 font-medium">
+                প্রদর্শিত মোট প্রকল্প তথ্য: <span id="resultCount" class="font-bold text-brand-600">0</span> টি
+            </p>
+            <button onclick="resetFilters()" class="text-xs text-brand-600 hover:text-brand-700 font-medium flex items-center gap-1">
+                <i class="fa-solid fa-rotate-left"></i> ফিল্টার রিসেট
+            </button>
+        </div>
+
+        <!-- Data Display: Desktop Table View -->
+        <div class="hidden md:block bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+            <div class="overflow-x-auto custom-scrollbar">
+                <table class="w-full text-left border-collapse">
+                    <thead>
+                        <tr class="bg-slate-50 border-b border-slate-200 text-xs font-bold text-slate-600 uppercase tracking-wider">
+                            <th class="py-4 px-6">ওয়ার্ড</th>
+                            <th class="py-4 px-6">প্রকল্পের বিষয় ও মূল বিবরণ</th>
+                            <th class="py-4 px-6">বরাদ্দ / পরিমাণ</th>
+                            <th class="py-4 px-6">উৎস্য / তহবিল</th>
+                            <th class="py-4 px-6">তারিখ</th>
+                            <th class="py-4 px-6">অবস্থা</th>
+                            <th class="py-4 px-6 text-right">অ্যাকশন</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody" class="divide-y divide-slate-100 text-sm">
+                        <!-- Data rows will be injected here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Data Display: Mobile Card View -->
+        <div id="mobileCards" class="grid grid-cols-1 gap-4 md:hidden">
+            <!-- Mobile cards will be injected here -->
+        </div>
+
+        <!-- Empty State (When no match found) -->
+        <div id="noResults" class="hidden bg-white rounded-2xl border border-slate-200 p-12 text-center my-6">
+            <div class="w-16 h-16 bg-slate-100 text-slate-400 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                <i class="fa-solid fa-filter-circle-xmark"></i>
+            </div>
+            <h3 class="text-lg font-bold text-slate-800 mb-1">কোনো তথ্য পাওয়া যায়নি!</h3>
+            <p class="text-slate-500 text-sm max-w-md mx-auto">সিলেক্ট করা ওয়ার্ড বা প্রকল্পের ক্যাটাগরিতে কোনো তথ্য পাওয়া যায়নি। অনুগ্রহ করে অন্যান্য ফিল্টার দিয়ে চেষ্টা করুন।</p>
+            <button onclick="resetFilters()" class="mt-4 px-4 py-2 bg-brand-50 hover:bg-brand-100 text-brand-600 text-sm font-semibold rounded-lg transition-colors">
+                সকল ফিল্টার মুছে নতুন সার্চ করুন
+            </button>
+        </div>
+
+    </main>
+
+    <!-- Modal for Adding New Entry -->
+    <div id="addModal" class="fixed inset-0 z-50 hidden bg-slate-900/40 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-xl border border-slate-100 w-full max-w-md overflow-hidden transform transition-all">
+            <div class="px-6 py-4 bg-slate-50 border-b border-slate-100 flex items-center justify-between">
+                <h3 class="text-base font-bold text-slate-800 flex items-center gap-2">
+                    <i class="fa-solid fa-folder-plus text-brand-600"></i>
+                    নতুন প্রকল্প বা বরাদ্দ যোগ করুন
+                </h3>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-slate-600 w-8 h-8 rounded-full flex items-center justify-center hover:bg-slate-200/50 transition-colors">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            
+            <form id="entryForm" onsubmit="handleFormSubmit(event)" class="p-6 space-y-3.5">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-600 uppercase mb-1">ওয়ার্ড নির্বাচন করুন *</label>
+                    <select id="inputWard" required class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                        <option value="২৭ নং দক্ষিণ আগ্রাবাদ">২৭ নং দক্ষিণ আগ্রাবাদ</option>
+                        <option value="২৮ নং দক্ষিণ পাঠানটুলী">২৮ নং দক্ষিণ পাঠানটুলী</option>
+                        <option value="২৯ নং পশ্চিম মাদারবাড়ী">২৯ নং পশ্চিম মাদারবাড়ী</option>
+                        <option value="৩০ নং পূর্ব মাদারবাড়ী">৩০ নং পূর্ব মাদারবাড়ী</option>
+                        <option value="৩৬ নং গোসাইলডাঙ্গা">৩৬ নং গোসাইলডাঙ্গা</option>
+                        <option value="৩৭ নং মুনির নগর">৩৭ নং মুনির নগর</option>
+                        <option value="৩৮ নং দক্ষিণ মধ্য হালিশহর">৩৮ নং দক্ষিণ মধ্য হালিশহর</option>
+                        <option value="৩৯ নং দক্ষিণ হালিশহর">৩৯ নং দক্ষিণ হালিশহর</option>
+                        <option value="৪০ নং উত্তর পতেঙ্গা">৪০ নং উত্তর পতেঙ্গা</option>
+                        <option value="৪১ নং দক্ষিণ পতেঙ্গা">৪১ নং দক্ষিণ পতেঙ্গা</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-600 uppercase mb-1">প্রকল্পের ধরন / শিরোনাম *</label>
+                    <select id="inputCategory" required class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                        <option value="ধর্ম মন্ত্রণালয় অনুদান">ধর্ম মন্ত্রণালয় অনুদান</option>
+                        <option value="টি.আর কর্মসূচি বরাদ্দ">টি.আর কর্মসূচি বরাদ্দ</option>
+                        <option value="প্রাকৃতিক দুর্যোগ ও চাল সাহায্য">প্রাকৃতিক দুর্যোগ ও চাল সাহায্য</option>
+                        <option value="সিটি কর্পোরেশন চাল বরাদ্দ">সিটি কর্পোরেশন চাল বরাদ্দ</option>
+                        <option value="স্যারের নিজস্ব তহবিল">স্যারের নিজস্ব তহবিল</option>
+                        <option value="ইসলামিক ফাউন্ডেশন মক্তব">ইসলামিক ফাউন্ডেশন মক্তব</option>
+                        <option value="ঈদুল ফিতর উপহার">ঈদুল ফিতর উপহার</option>
+                        <option value="ঈদুল আযহা মাংস বিতরণ">ঈদুল আযহা মাংস বিতরণ</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-600 uppercase mb-1">প্রকল্পের বিস্তারিত বিবরণ *</label>
+                    <textarea id="inputDetails" required rows="2" placeholder="প্রকল্পের বিস্তারিত লিখুন..." class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-500"></textarea>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 uppercase mb-1">বরাদ্দ/পরিমাণ</label>
+                        <input type="text" id="inputAmount" placeholder="যেমন: ৩০ লক্ষ টাকা / ৫ টন" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 uppercase mb-1">তারিখ *</label>
+                        <input type="date" id="inputDate" required class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-slate-600 uppercase mb-1">প্রকল্পের অবস্থান / স্ট্যাটাস *</label>
+                    <select id="inputStatus" class="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-500">
+                        <option value="বিতরণ সম্পন্ন">বিতরণ সম্পন্ন</option>
+                        <option value="অনুমোদিত ও চলমান">অনুমোদিত ও চলমান</option>
+                        <option value="প্রক্রিয়াধীন">প্রক্রিয়াধীন</option>
+                    </select>
+                </div>
+
+                <div class="pt-2 flex justify-end gap-2">
+                    <button type="button" onclick="closeModal()" class="px-4 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 text-sm font-medium rounded-lg transition-colors">বাতিল</button>
+                    <button type="submit" class="px-4 py-2 bg-brand-600 hover:bg-brand-700 text-white text-sm font-medium rounded-lg transition-colors shadow-sm">সংরক্ষণ করুন</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Application Script -->
+    <script>
+        // Specified 10 Wards
+        const wardList = [
+            '২৭ নং দক্ষিণ আগ্রাবাদ',
+            '২৮ নং দক্ষিণ পাঠানটুলী',
+            '২৯ নং পশ্চিম মাদারবাড়ী',
+            '৩০ নং পূর্ব মাদারবাড়ী',
+            '৩৬ নং গোসাইলডাঙ্গা',
+            '৩৭ নং মুনির নগর',
+            '৩৮ নং দক্ষিণ মধ্য হালিশহর',
+            '৩৯ নং দক্ষিণ হালিশহর',
+            '৪০ নং উত্তর পতেঙ্গা',
+            '৪১ নং দক্ষিণ পতেঙ্গা'
+        ];
+
+        // Specified 10 Core Projects
+        const projectTemplates = [
+            {
+                category: '১. ধর্ম মন্ত্রণালয় অনুদান',
+                details: 'ধর্ম মন্ত্রণালয় কর্তৃক বরাদ্দকৃত মসজিদ, মন্দির ও দুঃস্থ মুসলিমদের আবেদনের প্রেক্ষিতে ২৭ লক্ষ টাকার অনুদান আনয়ন ও বিতরণ।',
+                amount: '২৭ লক্ষ টাকা',
+                source: 'ধর্ম মন্ত্রণালয়'
+            },
+            {
+                category: '২. টি.আর ৩০ লক্ষ টাকা বরাদ্দ',
+                details: 'টি.আর কর্মসূচির আওতাধীন ৩০ লক্ষ টাকা নগদ বরাদ্দ আনয়ন ও প্রকল্প আকারে বিতরণ।',
+                amount: '৩০ লক্ষ টাকা',
+                source: 'টি.আর কর্মসূচি'
+            },
+            {
+                category: '৩. টি.আর ৯০ লক্ষ টাকা বরাদ্দ',
+                details: 'টি.আর কর্মসূচির আওতাধীন ৯০ লক্ষ টাকা নগদ বরাদ্দ আনয়ন ও প্রকল্প আকারে বিতরণ।',
+                amount: '৯০ লক্ষ টাকা',
+                source: 'টি.আর কর্মসূচি'
+            },
+            {
+                category: '৪. টি.আর ৪০ লক্ষ টাকা বরাদ্দ',
+                details: 'টি.আর কর্মসূচির আওতাধীন ৪০ লক্ষ টাকা নগদ বরাদ্দ আনয়ন ও প্রকল্প আকারে বিতরণ।',
+                amount: '৪০ লক্ষ টাকা',
+                source: 'টি.আর কর্মসূচি'
+            },
+            {
+                category: '৫. দুর্যোগ ত্রাণ চাল ও নগদ',
+                details: 'প্রাকৃতিক দুর্যোগে ক্ষতিগ্রস্ত দুঃস্থ ও অসহায় মানুষের জন্য ৬০ টন চাল ও ৭ লক্ষ টাকা বরাদ্দ আনয়ন ও বিতরণ।',
+                amount: '৬০ টন চাল ও ৭ লক্ষ টাকা',
+                source: 'ত্রাণ মন্ত্রণালয়'
+            },
+            {
+                category: '৬. সিটি কর্পোরেশন চাল বরাদ্দ',
+                details: 'সিটি কর্পোরেশনের বরাদ্দকৃত ৫ টন চাল আনয়ন ও বিতরণ।',
+                amount: '৫ টন চাল',
+                source: 'সিটি কর্পোরেশন'
+            },
+            {
+                category: '৭. স্যারের নিজস্ব তহবিল',
+                details: 'স্যারের নিজস্ব তহবিল হতে ১০ লক্ষ টাকা আনয়ন ও বন্যা দুর্গতদের মাঝে ওয়ার্ড ভিত্তিক বিতরণ।',
+                amount: '১০ লক্ষ টাকা',
+                source: 'নিজস্ব তহবিল'
+            },
+            {
+                category: '৮. ইসলামিক ফাউন্ডেশন মক্তব',
+                details: 'ইসলামিক ফাউন্ডেশনের চিঠির প্রেক্ষিতে ২৬ টি মক্তবের তালিকা চূড়ান্ত অনুমোদন।',
+                amount: '২৬ টি মক্তব',
+                source: 'ইসলামিক ফাউন্ডেশন'
+            },
+            {
+                category: '৯. ঈদুল ফিতর উপহার বিতরণ',
+                details: 'পবিত্র ঈদুল ফিতর-২০২৬ইং উপলক্ষে নির্বাচনী এলাকায় দলীয় কর্মীদের মাঝে উপহার সামগ্রী বিতরণ।',
+                amount: 'উপহার সামগ্রী',
+                source: 'দলীয় তহবিল'
+            },
+            {
+                category: '১০. ঈদুল আযহা মাংস বিতরণ',
+                details: 'পবিত্র ঈদুল আযহা-২০২৬ইং উপলক্ষে নির্বাচনী এলাকায় মাংস বিতরণ।',
+                amount: 'মাংস সামগ্রী',
+                source: 'বিশেষ ফান্ড'
+            }
+        ];
+
+        // Automatically Generate Data: All 10 Projects for All 10 Wards
+        let initialData = [];
+        let idCounter = 1;
+
+        wardList.forEach(ward => {
+            projectTemplates.forEach((proj, index) => {
+                let status = 'বিতরণ সম্পন্ন';
+                if(index === 2 || index === 7) status = 'অনুমোদিত ও চলমান';
+                if(index === 8 || index === 9) status = 'প্রক্রিয়াধীন';
+
+                initialData.push({
+                    id: idCounter++,
+                    ward: ward,
+                    category: proj.category,
+                    details: proj.details,
+                    amount: proj.amount,
+                    source: proj.source,
+                    date: '২০২৬-০৩-০১',
+                    status: status
+                });
+            });
+        });
+
+        let dataList = [...initialData];
+        let currentWardFilter = 'ALL';
+        let currentCategoryFilter = 'ALL';
+
+        window.onload = function() {
+            populateDropdowns();
+            renderWardChips();
+            filterData();
+            document.getElementById('inputDate').value = new Date().toISOString().split('T')[0];
+        };
+
+        // Populate Ward & Category dropdowns dynamically
+        function populateDropdowns() {
+            const wardSelect = document.getElementById('wardFilter');
+            const catSelect = document.getElementById('categoryFilter');
+
+            const categories = [...new Set(dataList.map(item => item.category))];
+
+            wardSelect.innerHTML = '<option value="ALL">সকল ওয়ার্ড (২৭-৪১)</option>';
+            wardList.forEach(w => {
+                const opt = document.createElement('option');
+                opt.value = w;
+                opt.textContent = w;
+                wardSelect.appendChild(opt);
+            });
+
+            catSelect.innerHTML = '<option value="ALL">সকল প্রকল্প (১০টি সুনির্দিষ্ট প্রকল্প)</option>';
+            categories.forEach(c => {
+                const opt = document.createElement('option');
+                opt.value = c;
+                opt.textContent = c;
+                catSelect.appendChild(opt);
+            });
+        }
+
+        // Render Ward Quick Action Chips
+        function renderWardChips() {
+            const container = document.getElementById('wardChips');
+            container.innerHTML = '';
+            
+            const allChips = ['ALL', ...wardList];
+            allChips.forEach(w => {
+                const isSelected = currentWardFilter === w;
+                const chip = document.createElement('button');
+                chip.onclick = () => selectWardChip(w);
+                chip.className = `px-3 py-1 rounded-full text-xs font-semibold whitespace-nowrap transition-all ${
+                    isSelected 
+                    ? 'bg-brand-600 text-white shadow-sm' 
+                    : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                }`;
+                chip.textContent = w === 'ALL' ? 'সব ওয়ার্ড' : w;
+                container.appendChild(chip);
+            });
+        }
+
+        function selectWardChip(ward) {
+            currentWardFilter = ward;
+            document.getElementById('wardFilter').value = ward;
+            renderWardChips();
+            filterData();
+        }
+
+        function getStatusBadge(status) {
+            switch(status) {
+                case 'বিতরণ সম্পন্ন':
+                    return `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-50 text-emerald-700 border border-emerald-200">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>${status}
+                            </span>`;
+                case 'প্রক্রিয়াধীন':
+                    return `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-amber-50 text-amber-700 border border-amber-200">
+                                <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>${status}
+                            </span>`;
+                case 'অনুমোদিত ও চলমান':
+                    return `<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-xs font-medium bg-blue-50 text-blue-700 border border-blue-200">
+                                <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>${status}
+                            </span>`;
+                default:
+                    return `<span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-slate-100 text-slate-600">${status}</span>`;
+            }
+        }
+
+        // Master Filtering Logic
+        function filterData() {
+            const query = document.getElementById('searchInput').value.trim().toLowerCase();
+            const selectedWard = document.getElementById('wardFilter').value;
+            const selectedCat = document.getElementById('categoryFilter').value;
+            const clearBtn = document.getElementById('clearSearch');
+
+            currentWardFilter = selectedWard;
+            currentCategoryFilter = selectedCat;
+            renderWardChips();
+
+            if(query.length > 0) {
+                clearBtn.classList.remove('hidden');
+            } else {
+                clearBtn.classList.add('hidden');
+            }
+
+            const filtered = dataList.filter(item => {
+                const matchesQuery = 
+                    item.details.toLowerCase().includes(query) ||
+                    item.amount.toLowerCase().includes(query) ||
+                    item.category.toLowerCase().includes(query) ||
+                    item.ward.toLowerCase().includes(query);
+
+                const matchesWard = (selectedWard === 'ALL' || item.ward === selectedWard);
+                const matchesCat = (selectedCat === 'ALL' || item.category === selectedCat);
+
+                return matchesQuery && matchesWard && matchesCat;
+            });
+
+            renderTable(filtered);
+            renderCards(filtered);
+
+            document.getElementById('resultCount').textContent = filtered.length;
+
+            const noResults = document.getElementById('noResults');
+            if(filtered.length === 0) {
+                noResults.classList.remove('hidden');
+            } else {
+                noResults.classList.add('hidden');
+            }
+        }
+
+        function renderTable(items) {
+            const tbody = document.getElementById('tableBody');
+            tbody.innerHTML = '';
+
+            items.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-slate-50/80 transition-colors';
+                tr.innerHTML = `
+                    <td class="py-4 px-6 font-bold text-brand-700 whitespace-nowrap">
+                        <span class="bg-brand-50 text-brand-700 px-2.5 py-1 rounded-lg border border-brand-100 text-xs">${item.ward}</span>
+                    </td>
+                    <td class="py-4 px-6 max-w-md">
+                        <div class="font-bold text-slate-900 text-sm mb-1">${item.category}</div>
+                        <div class="text-xs text-slate-600 leading-relaxed">${item.details}</div>
+                    </td>
+                    <td class="py-4 px-6 font-semibold text-slate-900 whitespace-nowrap">${item.amount || '-'}</td>
+                    <td class="py-4 px-6 text-slate-500 text-xs whitespace-nowrap">${item.source || '-'}</td>
+                    <td class="py-4 px-6 text-slate-500 text-xs whitespace-nowrap">${item.date}</td>
+                    <td class="py-4 px-6 whitespace-nowrap">${getStatusBadge(item.status)}</td>
+                    <td class="py-4 px-6 text-right whitespace-nowrap">
+                        <button onclick="deleteItem(${item.id})" class="text-slate-400 hover:text-red-600 transition-colors p-1" title="মুছে ফেলুন">
+                            <i class="fa-regular fa-trash-can"></i>
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function renderCards(items) {
+            const container = document.getElementById('mobileCards');
+            container.innerHTML = '';
+
+            items.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'bg-white p-4 rounded-xl border border-slate-200 shadow-sm space-y-2.5';
+                card.innerHTML = `
+                    <div class="flex items-start justify-between gap-2">
+                        <div>
+                            <span class="text-xs font-bold text-brand-700 bg-brand-50 px-2 py-0.5 rounded border border-brand-100">${item.ward}</span>
+                            <h4 class="font-bold text-slate-900 text-sm mt-1.5">${item.category}</h4>
+                        </div>
+                        <div>
+                            ${getStatusBadge(item.status)}
+                        </div>
+                    </div>
+                    <p class="text-xs text-slate-600 leading-relaxed bg-slate-50 p-2.5 rounded-lg border border-slate-100">${item.details}</p>
+                    <div class="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
+                        <span class="font-semibold text-slate-500">পরিমাণ: <strong class="text-slate-800">${item.amount || ''}</strong></span>
+                        <span class="text-slate-400">${item.date}</span>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function clearSearchInput() {
+            document.getElementById('searchInput').value = '';
+            filterData();
+        }
+
+        function resetFilters() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('wardFilter').value = 'ALL';
+            document.getElementById('categoryFilter').value = 'ALL';
+            currentWardFilter = 'ALL';
+            currentCategoryFilter = 'ALL';
+            filterData();
+        }
+
+        function deleteItem(id) {
+            dataList = dataList.filter(item => item.id !== id);
+            populateDropdowns();
+            filterData();
+        }
+
+        function openModal() {
+            document.getElementById('addModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('addModal').classList.add('hidden');
+            document.getElementById('entryForm').reset();
+        }
+
+        function handleFormSubmit(event) {
+            event.preventDefault();
+            
+            const newItem = {
+                id: Date.now(),
+                ward: document.getElementById('inputWard').value,
+                category: document.getElementById('inputCategory').value,
+                details: document.getElementById('inputDetails').value.trim(),
+                amount: document.getElementById('inputAmount').value.trim(),
+                source: 'সাধারণ বরাদ্দ',
+                date: document.getElementById('inputDate').value,
+                status: document.getElementById('inputStatus').value
+            };
+
+            dataList.unshift(newItem);
+            populateDropdowns();
+            filterData();
+            closeModal();
+        }
+    </script>
+</body>
+</html>
