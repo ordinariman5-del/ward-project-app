@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>১১ আসনের উন্নয়ন ও প্রকল্প তথ্যভান্ডার</title>
+    <title>১১ আসনের উন্নয়ন ও প্রকল্প তথ্যভান্ডার</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -25,8 +25,8 @@
                     <i class="fa-solid fa-layer-group"></i>
                 </div>
                 <div>
-                    <h1 class="text-xl sm:text-2xl font-bold tracking-wide">১১ আসনের উন্নয়ন ও প্রকল্প তথ্যভান্ডার</h1>
-                    <p class="text-xs sm:text-sm text-slate-300">ওয়ার্ড ও প্রকল্প ভিত্তিক পিডিএফ ফলাফল ব্যবস্থাপনা</p>
+                    <h1 class="text-xl sm:text-2xl font-bold tracking-wide">১১ আসনের উন্নয়ন ও প্রকল্প তথ্যভান্ডার</h1>
+                    <p class="text-xs sm:text-sm text-slate-300">ওয়ার্ড ও প্রকল্প ভিত্তিক পিডিএফ ফলাফল ব্যবস্থাপনা</p>
                 </div>
             </div>
             <button onclick="openModal()" class="bg-sky-600 hover:bg-sky-700 text-white px-5 py-2.5 rounded-lg font-medium transition shadow flex items-center gap-2">
@@ -41,15 +41,15 @@
         <!-- Filter Section -->
         <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 mb-6 space-y-4">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <!-- ওয়ার্ড ফিল্টার -->
+                <!-- ওয়ার্ড ফিল্টার -->
                 <div>
-                    <label class="block text-xs font-semibold text-slate-600 mb-1">ওয়ার্ড নির্বাচন করুন:</label>
+                    <label class="block text-xs font-semibold text-slate-600 mb-1">ওয়ার্ড নির্বাচন করুন:</label>
                     <select id="filterWardSelect" onchange="applyFilters()" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sky-600 font-medium">
-                        <option value="সব">সকল ওয়ার্ড (২৭-৪১)</option>
+                        <option value="সব">সকল ওয়ার্ড (২৭-৪১)</option>
                         <option value="২৭ নং দক্ষিণ আগ্রাবাদ">২৭ নং দক্ষিণ আগ্রাবাদ</option>
                         <option value="২৮ নং দক্ষিণ পাঠানটুলী">২৮ নং দক্ষিণ পাঠানটুলী</option>
-                        <option value="২৯ নং পশ্চিম মাদারবাড়ী">২৯ নং পশ্চিম মাদারবাড়ী</option>
-                        <option value="৩০ নং পূর্ব মাদারবাড়ী">৩০ নং পূর্ব মাদারবাড়ী</option>
+                        <option value="২৯ নং পশ্চিম মাদারবাড়ী">২৯ নং পশ্চিম মাদারবাড়ী</option>
+                        <option value="৩০ নং পূর্ব মাদারবাড়ী">৩০ নং পূর্ব মাদারবাড়ী</option>
                         <option value="৩৬ নং গোসাইলডাঙ্গা">৩৬ নং গোসাইলডাঙ্গা</option>
                         <option value="৩৭ নং মুনির নগর">৩৭ নং মুনির নগর</option>
                         <option value="৩৮ নং দক্ষিণ মধ্য হালিশহর">৩৮ নং দক্ষিণ মধ্য হালিশহর</option>
@@ -63,25 +63,24 @@
                 <div>
                     <label class="block text-xs font-semibold text-slate-600 mb-1">প্রকল্প বা অনুদান নির্বাচন করুন:</label>
                     <select id="filterProjectSelect" onchange="applyFilters()" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sky-600 font-medium">
-                        <option value="সব">সকল প্রকল্প ও অনুদান (১০টি নির্দিষ্ট)</option>
-                        <option value="১। ধর্ম মন্ত্রণালয় অনুদান (২৭ লক্ষ)">১। ধর্ম মন্ত্রণালয় অনুদান (২৭ লক্ষ)</option>
+                        <option value="সব">সকল প্রকল্প ও অনুদান</option>
+                        <option value="১। ধর্ম মন্ত্রণালয় অনুদান (২৭ লক্ষ)">১। ধর্ম মন্ত্রণালয় অনুদান (২৭ লক্ষ)</option>
                         <option value="২। টি.আর কর্মসূচি (৩০ লক্ষ)">২। টি.আর কর্মসূচি (৩০ লক্ষ)</option>
                         <option value="৩। টি.আর কর্মসূচি (৯০ লক্ষ)">৩। টি.আর কর্মসূচি (৯০ লক্ষ)</option>
                         <option value="৪। টি.আর কর্মসূচি (৪০ লক্ষ)">৪। টি.আর কর্মসূচি (৪০ লক্ষ)</option>
-                        <option value="৫। জেলা পরিষদের প্রকল্প (৫০ লক্ষ)">৫। জেলা পরিষদ (৫০ লক্ষ)</option>
-                        <option value="৬। প্রাকৃতিক দুর্যোগে সহায়তা (৬০ টন চাল ও ৭ লক্ষ)">৫। প্রাকৃতিক দুর্যোগে সহায়তা (৬০ টন চাল ও ৭ লক্ষ)</option>
-                        <option value="৭। সিটি কর্পোরেশন বরাদ্দ (৫ টন চাল)">৬। সিটি কর্পোরেশন বরাদ্দ (৫ টন চাল)</option>
-                        <option value="৮। নিজস্ব তহবিল হতে বন্যা সহায়তা (১০ লক্ষ)">৭। নিজস্ব তহবিল হতে বন্যা সহায়তা (১০ লক্ষ)</option>
-                        <option value="৯। ইসলামিক ফাউন্ডেশন মক্তব তালিকা (২৬টি)">৮। ইসলামিক ফাউন্ডেশন মক্তব তালিকা (২৬টি)</option>
-                        <option value="১০। ঈদুল ফিতর-২০২৬ উপহার সামগ্রী বিতরণ">৯। ঈদুল ফিতর-২০২৬ উপহার সামগ্রী বিতরণ</option>
-                        <option value="১১। ঈদুল আযহা-২০২৬ মাংস বিতরণ">১০। ঈদুল আযহা-২০২৬ মাংস বিতরণ</option>
-                        
+                        <option value="৫। জেলা পরিষদের প্রকল্প (৫০ লক্ষ)">৫। জেলা পরিষদের প্রকল্প (৫০ লক্ষ)</option>
+                        <option value="৬। প্রাকৃতিক দুর্যোগে সহায়তা (৬০ টন চাল ও ৭ লক্ষ)">৬। প্রাকৃতিক দুর্যোগে সহায়তা (৬০ টন চাল ও ৭ লক্ষ)</option>
+                        <option value="৭। সিটি কর্পোরেশন বরাদ্দ (৫ টন চাল)">৭। সিটি কর্পোরেশন বরাদ্দ (৫ টন চাল)</option>
+                        <option value="৮। নিজস্ব তহবিল হতে বন্যা সহায়তা (১০ লক্ষ)">৮। নিজস্ব তহবিল হতে বন্যা সহায়তা (১০ লক্ষ)</option>
+                        <option value="৯। ইসলামিক ফাউন্ডেশন মক্তব তালিকা (২৬টি)">৯। ইসলামিক ফাউন্ডেশন মক্তব তালিকা (২৬টি)</option>
+                        <option value="১০। ঈদুল ফিতর-২০২৬ উপহার সামগ্রী বিতরণ">১০। ঈদুল ফিতর-২০২৬ উপহার সামগ্রী বিতরণ</option>
+                        <option value="১১। ঈদুল আযহা-২০২৬ মাংস বিতরণ">১১। ঈদুল আযহা-২০২৬ মাংস বিতরণ</option>
                     </select>
                 </div>
             </div>
 
             <div class="flex justify-between items-center text-sm text-slate-700 font-medium pt-2 border-t border-slate-100">
-                <span>ফলাফল পাওয়া গেছে:</span>
+                <span>ফলাফল পাওয়া গেছে:</span>
                 <span id="totalCount" class="font-bold text-sky-600">0</span> টি প্রজেক্ট
             </div>
         </div>
@@ -92,10 +91,10 @@
                 <table class="w-full text-left border-collapse">
                     <thead>
                         <tr class="bg-slate-100 text-slate-700 text-xs sm:text-sm border-b border-slate-200">
-                            <th class="p-3 font-semibold">ওয়ার্ড</th>
-                            <th class="p-3 font-semibold">প্রকল্পের নাম ও পাস হওয়া বিবরণ</th>
+                            <th class="p-3 font-semibold">ওয়ার্ড</th>
+                            <th class="p-3 font-semibold">প্রকল্পের নাম ও পাস হওয়া বিবরণ</th>
                             <th class="p-3 font-semibold">বরাদ্দ / পরিমাণ</th>
-                            <th class="p-3 font-semibold">অফিসিয়াল পিডিএফ ফলাফল</th>
+                            <th class="p-3 font-semibold">অফিসিয়াল পিডিএফ ফলাফল</th>
                         </tr>
                     </thead>
                     <tbody id="projectTableBody" class="divide-y divide-slate-200 text-sm">
@@ -116,13 +115,13 @@
             <form id="submissionForm" onsubmit="handleFormSubmit(event)" class="space-y-4">
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">ওয়ার্ড নির্বাচন করুন *</label>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">ওয়ার্ড নির্বাচন করুন *</label>
                         <select id="wardNo" required class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-sky-600 focus:outline-none">
-                            <option value="">-- ওয়ার্ড সিলেক্ট করুন --</option>
+                            <option value="">-- ওয়ার্ড সিলেক্ট করুন --</option>
                             <option value="২৭ নং দক্ষিণ আগ্রাবাদ">২৭ নং দক্ষিণ আগ্রাবাদ</option>
                             <option value="২৮ নং দক্ষিণ পাঠানটুলী">২৮ নং দক্ষিণ পাঠানটুলী</option>
-                            <option value="২৯ নং পশ্চিম মাদারবাড়ী">২৯ নং পশ্চিম মাদারবাড়ী</option>
-                            <option value="৩০ নং পূর্ব মাদারবাড়ী">৩০ নং পূর্ব মাদারবাড়ী</option>
+                            <option value="২৯ নং পশ্চিম মাদারবাড়ী">২৯ নং পশ্চিম মাদারবাড়ী</option>
+                            <option value="৩০ নং পূর্ব মাদারবাড়ী">৩০ নং পূর্ব মাদারবাড়ী</option>
                             <option value="৩৬ নং গোসাইলডাঙ্গা">৩৬ নং গোসাইলডাঙ্গা</option>
                             <option value="৩৭ নং মুনির নগর">৩৭ নং মুনির নগর</option>
                             <option value="৩৮ নং দক্ষিণ মধ্য হালিশহর">৩৮ নং দক্ষিণ মধ্য হালিশহর</option>
@@ -135,17 +134,17 @@
                         <label class="block text-xs font-semibold text-slate-700 mb-1">প্রকল্পের খাত নির্বাচন করুন *</label>
                         <select id="projectCategory" required class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-sky-600 focus:outline-none">
                             <option value="">-- প্রকল্প সিলেক্ট করুন --</option>
-                            <option value="১। ধর্ম মন্ত্রণালয় অনুদান (২৭ লক্ষ)">১। ধর্ম মন্ত্রণালয় অনুদান (২৭ লক্ষ)</option>
+                            <option value="১। ধর্ম মন্ত্রণালয় অনুদান (২৭ লক্ষ)">১। ধর্ম মন্ত্রণালয় অনুদান (২৭ লক্ষ)</option>
                             <option value="২। টি.আর কর্মসূচি (৩০ লক্ষ)">২। টি.আর কর্মসূচি (৩০ লক্ষ)</option>
                             <option value="৩। টি.আর কর্মসূচি (৯০ লক্ষ)">৩। টি.আর কর্মসূচি (৯০ লক্ষ)</option>
                             <option value="৪। টি.আর কর্মসূচি (৪০ লক্ষ)">৪। টি.আর কর্মসূচি (৪০ লক্ষ)</option>
-                            <option value="৫। জেলা পরিষদের প্রকল্প (৫০ লক্ষ)">৫। জেলা পরিষদ (৫০ লক্ষ)</option>
-                            <option value="৬। প্রাকৃতিক দুর্যোগে সহায়তা (৬০ টন চাল ও ৭ লক্ষ)">৫। প্রাকৃতিক দুর্যোগে সহায়তা (৬০ টন চাল ও ৭ লক্ষ)</option>
-                            <option value="৭। সিটি কর্পোরেশন বরাদ্দ (৫ টন চাল)">৬। সিটি কর্পোরেশন বরাদ্দ (৫ টন চাল)</option>
-                            <option value="৮। নিজস্ব তহবিল হতে বন্যা সহায়তা (১০ লক্ষ)">৭। নিজস্ব তহবিল হতে বন্যা সহায়তা (১০ লক্ষ)</option>
-                            <option value="৯। ইসলামিক ফাউন্ডেশন মক্তব তালিকা (২৬টি)">৮। ইসলামিক ফাউন্ডেশন মক্তব তালিকা (২৬টি)</option>
-                            <option value="১০। ঈদুল ফিতর-২০২৬ উপহার সামগ্রী বিতরণ">৯। ঈদুল ফিতর-২০২৬ উপহার সামগ্রী বিতরণ</option>
-                            <option value="১১। ঈদুল আযহা-২০২৬ মাংস বিতরণ">১০। ঈদুল আযহা-২০২৬ মাংস বিতরণ</option>
+                            <option value="৫। জেলা পরিষদের প্রকল্প (৫০ লক্ষ)">৫। জেলা পরিষদের প্রকল্প (৫০ লক্ষ)</option>
+                            <option value="৬। প্রাকৃতিক দুর্যোগে সহায়তা (৬০ টন চাল ও ৭ লক্ষ)">৬। প্রাকৃতিক দুর্যোগে সহায়তা (৬০ টন চাল ও ৭ লক্ষ)</option>
+                            <option value="৭। সিটি কর্পোরেশন বরাদ্দ (৫ টন চাল)">৭। সিটি কর্পোরেশন বরাদ্দ (৫ টন চাল)</option>
+                            <option value="৮। নিজস্ব তহবিল হতে বন্যা সহায়তা (১০ লক্ষ)">৮। নিজস্ব তহবিল হতে বন্যা সহায়তা (১০ লক্ষ)</option>
+                            <option value="৯। ইসলামিক ফাউন্ডেশন মক্তব তালিকা (২৬টি)">৯। ইসলামিক ফাউন্ডেশন মক্তব তালিকা (২৬টি)</option>
+                            <option value="১০। ঈদুল ফিতর-২০২৬ উপহার সামগ্রী বিতরণ">১০। ঈদুল ফিতর-২০২৬ উপহার সামগ্রী বিতরণ</option>
+                            <option value="১১। ঈদুল আযহা-২০২৬ মাংস বিতরণ">১১। ঈদুল আযহা-২০২৬ মাংস বিতরণ</option>
                         </select>
                     </div>
                 </div>
@@ -163,11 +162,11 @@
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">জাতীয় পরিচয়পত্র (NID) নম্বর *</label>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">জাতীয় পরিচয়পত্র (NID) নম্বর *</label>
                         <input type="text" id="applicantNID" required class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-sky-600 focus:outline-none" placeholder="NID নম্বর লিখুন">
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-slate-700 mb-1">বরাদ্দ / প্রয়োজনীয় পরিমাণ</label>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">বরাদ্দ / প্রয়োজনীয় পরিমাণ</label>
                         <input type="text" id="projectAmount" class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:ring-2 focus:ring-sky-600 focus:outline-none" placeholder="যেমন: ৫০,০০০ টাকা">
                     </div>
                 </div>
@@ -203,56 +202,55 @@
             },
             {
                 ward: "২৭ নং দক্ষিণ আগ্রাবাদ",
-                category: "১। ধর্ম মন্ত্রণালয় অনুদান (২৭ লক্ষ)",
-                desc: "ধর্ম মন্ত্রণালয় কর্তৃক বরাদ্দকৃত মসজিদ, মন্দির ও দুঃস্থ মুসলিমদের আবেদনের প্রেক্ষিতে ২৭ লক্ষ টাকার অনুদান আনয়ন ও বিতরণ সম্পর্কিত পাস হওয়া চূড়ান্ত তালিকা ও ফলাফল।",
+                category: "১। ধর্ম মন্ত্রণালয় অনুদান (২৭ লক্ষ)",
+                desc: "ধর্ম মন্ত্রণালয় কর্তৃক বরাদ্দকৃত মসজিদ, মন্দির ও দুঃস্থ মুসলিমদের আবেদনের প্রেক্ষিতে ২৭ লক্ষ টাকার অনুদান আনয়ন ও বিতরণ সম্পর্কিত পাস হওয়া চূড়ান্ত তালিকা ও ফলাফল।",
                 amount: "২৭ লক্ষ টাকা",
                 pdfUrl: "#",
                 status: "বিতরণ সম্পন্ন"
             },
-
             {
                 ward: "২৭ নং দক্ষিণ আগ্রাবাদ",
-                category: "২। েলা পরিষদের প্রকল্প (৫০ লক্ষ)">৫। জেলা পরিষদ (৫০ লক্ষ)",
-                desc: "ধর্ম মন্ত্রণালয় কর্তৃক বরাদ্দকৃত মসজিদ, মন্দির ও দুঃস্থ মুসলিমদের আবেদনের প্রেক্ষিতে ২৭ লক্ষ টাকার অনুদান আনয়ন ও বিতরণ সম্পর্কিত পাস হওয়া চূড়ান্ত তালিকা ও ফলাফল।",
-                amount: "২৭ লক্ষ টাকা",
+                category: "৫। জেলা পরিষদের প্রকল্প (৫০ লক্ষ)",
+                desc: "জেলা পরিষদ কর্তৃক বরাদ্দকৃত অনুদানের আওতাধীন উন্নয়নমূলক কাজের তালিকা ও বরাদ্দপত্র।",
+                amount: "৫০ লক্ষ টাকা",
                 pdfUrl: "#",
-                status: "বিতরণ সম্পন্ন"
-            },            
+                status: "অনুমোদিত"
+            },
             {
                 ward: "২৮ নং দক্ষিণ পাঠানটুলী",
                 category: "২। টি.আর কর্মসূচি (৩০ লক্ষ)",
-                desc: "টি.আর কর্মসূচির আওতাধীন ৩০ লক্ষ টাকা নগদ বরাদ্দ আনয়ন ও প্রকল্প আকারে বিতরণের অনুমোদনপত্র।",
+                desc: "টি.আর কর্মসূচির আওতাধীন ৩০ লক্ষ টাকা নগদ বরাদ্দ আনয়ন ও প্রকল্প আকারে বিতরণের অনুমোদনপত্র।",
                 amount: "৩০ লক্ষ টাকা",
                 pdfUrl: "#",
                 status: "বিতরণ সম্পন্ন"
             },
             {
-                ward: "২৯ নং পশ্চিম মাদারবাড়ী",
+                ward: "২৯ নং পশ্চিম মাদারবাড়ী",
                 category: "৩। টি.আর কর্মসূচি (৯০ লক্ষ)",
-                desc: "টি.আর কর্মসূচির আওতাধীন ৯০ লক্ষ টাকা নগদ বরাদ্দ আনয়ন ও প্রকল্প আকারে বিতরণের সারসংক্ষেপ।",
+                desc: "টি.আর কর্মসূচির আওতাধীন ৯০ লক্ষ টাকা নগদ বরাদ্দ আনয়ন ও প্রকল্প আকারে বিতরণের সারসংক্ষেপ।",
                 amount: "৯০ লক্ষ টাকা",
                 pdfUrl: "#",
                 status: "অনুমোদিত ও চলমান"
             },
             {
-                ward: "৩০ নং পূর্ব মাদারবাড়ী",
+                ward: "৩০ নং পূর্ব মাদারবাড়ী",
                 category: "৪। টি.আর কর্মসূচি (৪০ লক্ষ)",
-                desc: "টি.আর কর্মসূচির আওতাধীন ৪০ লক্ষ টাকা নগদ বরাদ্দ আনয়ন ও প্রকল্প আকারে বিতরণের বিবরণী।",
+                desc: "টি.আর কর্মসূচির আওতাধীন ৪০ লক্ষ টাকা নগদ বরাদ্দ আনয়ন ও প্রকল্প আকারে বিতরণের বিবরণী।",
                 amount: "৪০ লক্ষ টাকা",
                 pdfUrl: "#",
                 status: "চলমান"
             },
             {
                 ward: "৩৬ নং গোসাইলডাঙ্গা",
-                category: "৫। প্রাকৃতিক দুর্যোগে সহায়তা (৬০ টন চাল ও ৭ লক্ষ)",
-                desc: "প্রাকৃতিক দুর্যোগে ক্ষতিগ্রস্ত দুঃস্থ ও অসহায় মানুষের জন্য ৬০ টন চাল ও ৭ লক্ষ টাকা বরাদ্দ আনায়ণ ও বিতরণের সরকারি আদেশ ও তালিকা।",
+                category: "৬। প্রাকৃতিক দুর্যোগে সহায়তা (৬০ টন চাল ও ৭ লক্ষ)",
+                desc: "প্রাকৃতিক দুর্যোগে ক্ষতিগ্রস্ত দুঃস্থ ও অসহায় মানুষের জন্য ৬০ টন চাল ও ৭ লক্ষ টাকা বরাদ্দ আনায়ণ ও বিতরণের সরকারি আদেশ ও তালিকা।",
                 amount: "৬০ টন চাল ও ৭ লক্ষ টাকা",
                 pdfUrl: "#",
                 status: "বিতরণ সম্পন্ন"
             },
             {
                 ward: "৩৭ নং মুনির নগর",
-                category: "৬। সিটি কর্পোরেশন বরাদ্দ (৫ টন চাল)",
+                category: "৭। সিটি কর্পোরেশন বরাদ্দ (৫ টন চাল)",
                 desc: "সিটি কর্পোরেশনের বরাদ্দকৃত ৫ টন চাল আনয়ণ ও বিতরণের বরাদ্দপত্র।",
                 amount: "৫ টন চাল",
                 pdfUrl: "#",
@@ -260,32 +258,32 @@
             },
             {
                 ward: "৩৮ নং দক্ষিণ মধ্য হালিশহর",
-                category: "৭। নিজস্ব তহবিল হতে বন্যা সহায়তা (১০ লক্ষ)",
-                desc: "স্যারের নিজস্ব তহবিল হতে ১০ লক্ষ টাকা আনয়ণ ও বন্যা দুর্গতদের মাঝে ওয়ার্ড ভিত্তিক বিতরণের অনুমোদন।",
+                category: "৮। নিজস্ব তহবিল হতে বন্যা সহায়তা (১০ লক্ষ)",
+                desc: "স্যারের নিজস্ব তহবিল হতে ১০ লক্ষ টাকা আনয়ণ ও বন্যা দুর্গতদের মাঝে ওয়ার্ড ভিত্তিক বিতরণের অনুমোদন।",
                 amount: "১০ লক্ষ টাকা",
                 pdfUrl: "#",
                 status: "বিতরণ সম্পন্ন"
             },
             {
                 ward: "৩৯ নং দক্ষিণ হালিশহর",
-                category: "৮। ইসলামিক ফাউন্ডেশন মক্তব তালিকা (২৬টি)",
-                desc: "ইসলামিক ফাউন্ডেশনের চিঠির প্রেক্ষিতে ২৬ টি মক্তবের তালিকা চূড়ান্ত অনুমোদনের কপি।",
+                category: "৯। ইসলামিক ফাউন্ডেশন মক্তব তালিকা (২৬টি)",
+                desc: "ইসলামিক ফাউন্ডেশনের চিঠির প্রেক্ষিতে ২৬ টি মক্তবের তালিকা চূড়ান্ত অনুমোদনের কপি।",
                 amount: "২৬টি মক্তব",
                 pdfUrl: "#",
                 status: "অনুমোদিত"
             },
             {
                 ward: "৪০ নং উত্তর পতেঙ্গা",
-                category: "৯। ঈদুল ফিতর-২০২৬ উপহার সামগ্রী বিতরণ",
-                desc: "পবিত্র ঈদুল ফিতর-২০২৬ইং উপলক্ষে নির্বাচনী এলাকায় দলীয় কর্মীদের মাঝে উপহার সামগ্রী বিতরণের প্রতিবেদন।",
+                category: "১০। ঈদুল ফিতর-২০২৬ উপহার সামগ্রী বিতরণ",
+                desc: "পবিত্র ঈদুল ফিতর-২০২৬ইং উপলক্ষে নির্বাচনী এলাকায় দলীয় কর্মীদের মাঝে উপহার সামগ্রী বিতরণের প্রতিবেদন।",
                 amount: "উপহার সামগ্রী",
                 pdfUrl: "#",
                 status: "বিতরণ সম্পন্ন"
             },
             {
                 ward: "৪১ নং দক্ষিণ পতেঙ্গা",
-                category: "১০। ঈদুল আযহা-২০২৬ মাংস বিতরণ",
-                desc: "পবিত্র ঈদুল আযহা-২০২৬ইং উপলক্ষে নির্বাচনী এলাকায় মাংস বিতরণের তালিকা ও বিবরণী।",
+                category: "১১। ঈদুল আযহা-২০২৬ মাংস বিতরণ",
+                desc: "পবিত্র ঈদুল আযহা-২০২৬ইং উপলক্ষে নির্বাচনী এলাকায় মাংস বিতরণের তালিকা ও বিবরণী।",
                 amount: "মাংস বিতরণ",
                 pdfUrl: "#",
                 status: "বিতরণ সম্পন্ন"
@@ -319,14 +317,14 @@
             document.getElementById('totalCount').innerText = filtered.length;
 
             if (filtered.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="4" class="text-center py-6 text-slate-400">এই ওয়ার্ড বা প্রকল্পের কোনো তথ্য পাওয়া যায়নি।</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="4" class="text-center py-6 text-slate-400">এই ওয়ার্ড বা প্রকল্পের কোনো তথ্য পাওয়া যায়নি।</td></tr>`;
                 return;
             }
 
             filtered.forEach((item) => {
                 let pdfButton = item.pdfUrl && item.pdfUrl !== "#" ? 
                     `<a href="${item.pdfUrl}" target="_blank" class="inline-flex items-center gap-2 px-3 py-1.5 bg-red-600 hover:bg-red-700 text-white rounded-lg text-xs font-bold transition shadow-sm"><i class="fa-solid fa-file-pdf"></i> পিডিএফ ফাইল দেখুন</a>` : 
-                    `<span class="text-slate-400 text-xs italic">পিডিএফ সংযুক্তি প্রক্রিয়াধীন</span>`;
+                    `<span class="text-slate-400 text-xs italic">পিডিএফ সংযুক্তি প্রক্রিয়াধীন</span>`;
 
                 let statusBadge = item.status ? `<span class="inline-block ml-2 px-2 py-0.5 text-[10px] font-semibold bg-emerald-100 text-emerald-800 rounded-full">${item.status}</span>` : '';
 
@@ -339,7 +337,7 @@
                             <span class="font-bold text-sky-700 text-sm block">${item.category} ${statusBadge}</span>
                             <span class="text-xs text-slate-600 block mt-1 leading-relaxed">${item.desc}</span>
                         </td>
-                        <td class="p-3 align-top font-bold text-slate-800 text-xs">${item.amount || 'নির্ধারিত নয়'}</td>
+                        <td class="p-3 align-top font-bold text-slate-800 text-xs">${item.amount || 'নির্ধারিত নয়'}</td>
                         <td class="p-3 align-top">
                             ${pdfButton}
                         </td>
@@ -355,7 +353,7 @@
 
         function handleFormSubmit(event) {
             event.preventDefault();
-            alert('আপনার আবেদনটি সফলভাবে সাবমিট হয়েছে!');
+            alert('আপনার আবেদনটি সফলভাবে সাবমিট হয়েছে!');
             closeModal();
         }
 
