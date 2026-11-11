@@ -306,6 +306,17 @@
             }
         ];
 
+<!-- Data Logic -->
+    <script>
+        const defaultProjects = [
+            // এখানে অনেকগুলো প্রজেক্টের কোড আছে
+        ];
+
+        function loadProjects() {
+            let savedProjects = JSON.parse(localStorage.getItem('wardProjects')) || [];
+            let allProjects = [...savedProjects, ...defaultProjects];
+            // ...
+        
         function openModal() {
             document.getElementById('projectModal').classList.remove('hidden');
         }
