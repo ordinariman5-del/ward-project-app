@@ -312,23 +312,9 @@
             // এখানে অনেকগুলো প্রজেক্টের কোড আছে
         ];
 
-        function loadProjects() {
+       function loadProjects() {
             let savedProjects = JSON.parse(localStorage.getItem('wardProjects')) || [];
-            let allProjects = [...savedProjects, ...defaultProjects];
-            // ...
-        
-        function openModal() {
-            document.getElementById('projectModal').classList.remove('hidden');
-        }
-
-        function closeModal() {
-            document.getElementById('projectModal').classList.add('hidden');
-        }
-
-        function loadProjects() {
-            let savedProjects = JSON.parse(localStorage.getItem('wardProjects')) || [];
-            let allProjects = [...savedProjects, ...defaultProjects];
-            
+            let allProjects = [...defaultProjects, ...savedProjects];            
             let selectedWard = document.getElementById('filterWardSelect').value;
             let selectedProject = document.getElementById('filterProjectSelect').value;
 
