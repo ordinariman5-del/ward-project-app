@@ -16,27 +16,22 @@
     </style>
 </head>
 <body class="bg-slate-50 min-h-screen text-slate-800">
-
-  
-        </div>
+    
+    <!-- Header Section -->
+    <header class="bg-white shadow-sm border-b border-slate-200">
         <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
             <div class="flex items-center gap-3">
-
-
-<div>
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS93jdfR-FuZKyW_CILN83oWEObn2TiKzaLspzJdGD2KoHJ7CiDXYi5vyrA&s=10">
+                <div>
+                    <img src="https://backend.newsnow24.com/storage/photos/shares/news/2026/07/01/file_1782873726.png" alt="Logo" class="h-12 w-auto object-contain rounded-md">
                 </div>
-
-
-                    <div>
-                    <h1 class="text-xl sm:text-2xl font-bold tracking-wide">১১ আসনের উন্নয়ন ও প্রকল্প তথ্যভান্ডার</h1>
-                    <p class="text-xs sm:text-sm text-slate-300">ওয়ার্ড ও প্রকল্প ভিত্তিক পিডিএফ ফলাফল ব্যবস্থাপনা</p>
+                <div>
+                    <h1 class="text-xl sm:text-2xl font-bold tracking-wide">ওয়ার্ড ভিত্তিক উন্নয়ন প্রকল্প ও সাহায্য বিবরণী পোর্টাল</h1>
+                    <p class="text-xs sm:text-sm text-slate-500">২৭ থেকে ৪১ নং ওয়ার্ডের প্রকল্প, অনুদান ও বিতরণ ব্যবস্থাপনা</p>
                 </div>
             </div>
-                <i class="fa-solid fa-house"></i> হোম
-                </a>
+            <div class="flex items-center gap-3">
                 <button onclick="openModal()" class="bg-sky-600 hover:bg-sky-700 text-white px-4 py-2.5 rounded-lg font-medium transition shadow flex items-center gap-2 text-sm">
-                    <i class="fa-solid fa-plus"></i> সাহায্য বা প্রকল্পের আবেদন করুন
+                    <i class="fa-solid fa-plus"></i> নতুন প্রকল্প যোগ করুন
                 </button>
             </div>
         </div>
@@ -44,7 +39,6 @@
 
     <!-- Main Content -->
     <main class="max-w-7xl mx-auto px-4 py-6">
-        
         <!-- Filter Section -->
         <div class="bg-white p-4 rounded-xl shadow-sm border border-slate-200 mb-6 space-y-4">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -65,7 +59,6 @@
                         <option value="৪১ নং দক্ষিণ পতেঙ্গা">৪১ নং দক্ষিণ পতেঙ্গা</option>
                     </select>
                 </div>
-
                 <!-- প্রকল্প ফিল্টার -->
                 <div>
                     <label class="block text-xs font-semibold text-slate-600 mb-1">প্রকল্প বা অনুদান নির্বাচন করুন:</label>
@@ -87,8 +80,7 @@
             </div>
 
             <div class="flex justify-between items-center text-sm text-slate-700 font-medium pt-2 border-t border-slate-100">
-               <span>ফলাফল পাওয়া গেছে:<span>
-                <span id="totalCount" class="font-bold text-sky-600">0</span> টি প্রজেক্ট
+                <span>প্রদর্শित মোট প্রকল্প তথ্য: <span id="totalCount" class="font-bold text-sky-600">0</span> টি</span>
             </div>
         </div>
 
@@ -99,7 +91,7 @@
                     <thead>
                         <tr class="bg-slate-100 text-slate-700 text-xs sm:text-sm border-b border-slate-200">
                             <th class="p-3 font-semibold">ওয়ার্ড</th>
-                            <th class="p-3 font-semibold">প্রকল্পের নাম ও পাস হওয়া বিবরণ</th>
+                            <th class="p-3 font-semibold">প্রকল্পের বিষয় ও মূল বিবরণ</th>
                             <th class="p-3 font-semibold">বরাদ্দ / পরিমাণ</th>
                             <th class="p-3 font-semibold">ফলাফল</th>
                         </tr>
@@ -218,7 +210,7 @@
             {
                 ward: "২৭ নং দক্ষিণ আগ্রাবাদ",
                 category: "৫। জেলা পরিষদের প্রকল্প (৫০ লক্ষ)",
-                desc: "জেলা পরিষদ কর্তৃক বরাদ্দকৃত অনুদানের আওতাধীন উন্নয়নমূলক কাজের তালিকা ও বরাদ্দপত্র।",
+                desc: "জেলা পরিষদ কর্তৃক বরাদ্দকৃত অনুদানের আওতাধীন উন্নয়নমূলক কাজের তালিকা ও বরাদ্দপত্র।",
                 amount: "৫০ লক্ষ টাকা",
                 pdfUrl: "#",
                 status: "অনুমোদিত"
@@ -231,15 +223,14 @@
                 pdfUrl: "#",
                 status: "বিতরণ সম্পন্ন"
             },
-
-             {
-            ward: "২৮ নং দক্ষিণ পাঠানটুলী",
+            {
+                ward: "২৮ নং দক্ষিণ পাঠানটুলী",
                 category: "৫। জেলা পরিষদের প্রকল্প (৫০ লক্ষ)",
-                desc: "জেলা পরিষদ কর্তৃক বরাদ্দকৃত অনুদানের আওতাধীন উন্নয়নমূলক কাজের তালিকা ও বরাদ্দপত্র।",
+                desc: "জেলা পরিষদ কর্তৃক বরাদ্দকৃত অনুদানের আওতাধীন উন্নয়নমূলক কাজের তালিকা ও বরাদ্দপত্র।",
                 amount: "৫০ লক্ষ টাকা",
                 pdfUrl: "https://drive.google.com/file/d/1BsnDKC7m8vF1-YlC9t-L43j9fXfDEX7E/view?usp=sharing",
                 status: "অনুমোদিত"
-                    },
+            },
             {
                 ward: "২৯ নং পশ্চিম মাদারবাড়ী",
                 category: "৩। টি.আর কর্মসূচি (৯০ লক্ষ)",
@@ -306,15 +297,10 @@
             }
         ];
 
-<!-- Data Logic -->
-    <script>
-        const defaultProjects = [
-            // এখানে অনেকগুলো প্রজেক্টের কোড আছে
-        ];
-
-       function loadProjects() {
+        function loadProjects() {
             let savedProjects = JSON.parse(localStorage.getItem('wardProjects')) || [];
-            let allProjects = [...defaultProjects, ...savedProjects];            
+            let allProjects = [...defaultProjects, ...savedProjects];
+            
             let selectedWard = document.getElementById('filterWardSelect').value;
             let selectedProject = document.getElementById('filterProjectSelect').value;
 
@@ -338,9 +324,9 @@
                 let pdfButton = item.pdfUrl && item.pdfUrl !== "#" ? 
                     `<a href="${item.pdfUrl}" target="_blank" class="inline-flex items-center gap-2 px-3 py-1.5 bg-red-600 hover:bg-red-700 text-white rounded-lg text-xs font-bold transition shadow-sm"><i class="fa-solid fa-file-pdf"></i> পিডিএফ ফাইল দেখুন</a>` : 
                     `<span class="text-slate-400 text-xs italic">পিডিএফ সংযুক্তি প্রক্রিয়াধীন</span>`;
-
+                
                 let statusBadge = item.status ? `<span class="inline-block ml-2 px-2 py-0.5 text-[10px] font-semibold bg-emerald-100 text-emerald-800 rounded-full">${item.status}</span>` : '';
-
+                
                 let row = `
                     <tr class="hover:bg-slate-50 transition border-b border-slate-100">
                         <td class="p-3 align-top">
@@ -364,10 +350,34 @@
             loadProjects();
         }
 
+        function openModal() {
+            document.getElementById('projectModal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('projectModal').classList.add('hidden');
+        }
+
         function handleFormSubmit(event) {
             event.preventDefault();
+            
+            let newProject = {
+                ward: document.getElementById('wardNo').value,
+                category: document.getElementById('projectCategory').value,
+                desc: document.getElementById('projectDesc').value,
+                amount: document.getElementById('projectAmount').value || 'নির্ধারিত নয়',
+                pdfUrl: "#",
+                status: "নতুন আবেদন"
+            };
+
+            let savedProjects = JSON.parse(localStorage.getItem('wardProjects')) || [];
+            savedProjects.unshift(newProject);
+            localStorage.setItem('wardProjects', JSON.stringify(savedProjects));
+
             alert('আপনার আবেদনটি সফলভাবে সাবমিট হয়েছে!');
+            document.getElementById('submissionForm').reset();
             closeModal();
+            loadProjects();
         }
 
         window.onload = function() {
