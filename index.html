@@ -15,38 +15,27 @@
         }
     </style>
 </head>
-
-    <div class="flex items-center gap-3">
-    <!-- লোগো এবং শিরোনামের কোড -->
-</div>
-
-<!-- হোম বাটন অংশ -->
-<div class="flex items-center gap-3">
-    <a href="#" class="inline-flex items-center gap-2 px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-sm font-medium transition">
-        <i class="fa-solid fa-house"></i> হোম
-    </a>
-    
-</div>
 <body class="bg-slate-50 min-h-screen text-slate-800">
-
-    <div>
-    <h1 class="text-xl sm:text-2xl font-bold tracking-wide">১১ আসনের উন্নয়ন ও প্রকল্প তথ্যভান্ডার</h1>
-    <p class="text-xs sm:text-sm text-slate-500">ওয়ার্ড ও প্রকল্প ভিত্তিক পিডিএফ ফলাফল ব্যবস্থাপনা</p>
-</div>
     
     <!-- Header Section -->
     <header class="bg-white shadow-sm border-b border-slate-200">
         <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center gap-4">
-            <div class="flex items-center gap-3">
+            <!-- লোগো এবং মূল শিরোনাম -->
+            <div class="flex items-center gap-3 w-full sm:w-auto">
                 <div>
                     <img src="https://backend.newsnow24.com/storage/photos/shares/news/2026/07/01/file_1782873726.png" alt="Logo" class="h-12 w-auto object-contain rounded-md">
                 </div>
                 <div>
-                    <h1 class="text-xl sm:text-2xl font-bold tracking-wide">ওয়ার্ড ভিত্তিক উন্নয়ন প্রকল্প ও সাহায্য বিবরণী পোর্টাল</h1>
-                    <p class="text-xs sm:text-sm text-slate-500">২৭ থেকে ৪১ নং ওয়ার্ডের প্রকল্প, অনুদান ও বিতরণ ব্যবস্থাপনা</p>
+                    <h1 class="text-xl sm:text-2xl font-bold tracking-wide text-slate-900">১১ আসনের উন্নয়ন ও প্রকল্প তথ্যভান্ডার</h1>
+                    <p class="text-xs sm:text-sm text-slate-500">ওয়ার্ড ও প্রকল্প ভিত্তিক পিডিএফ ফলাফল ব্যবস্থাপনা</p>
                 </div>
             </div>
-            <div class="flex items-center gap-3">
+
+            <!-- হোম বাটন এবং নতুন প্রকল্প যোগ করার বাটন -->
+            <div class="flex items-center gap-3 self-end sm:self-center">
+                <a href="#" class="inline-flex items-center gap-2 px-3 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-lg text-sm font-medium transition">
+                    <i class="fa-solid fa-house"></i> হোম
+                </a>
                 <button onclick="openModal()" class="bg-sky-600 hover:bg-sky-700 text-white px-4 py-2.5 rounded-lg font-medium transition shadow flex items-center gap-2 text-sm">
                     <i class="fa-solid fa-plus"></i> নতুন প্রকল্প যোগ করুন
                 </button>
@@ -97,7 +86,7 @@
             </div>
 
             <div class="flex justify-between items-center text-sm text-slate-700 font-medium pt-2 border-t border-slate-100">
-                <span>প্রদর্শित মোট প্রকল্প তথ্য: <span id="totalCount" class="font-bold text-sky-600">0</span> টি</span>
+                <span>ফলাফল পাওয়া গেছে: <span id="totalCount" class="font-bold text-sky-600">0</span> টি প্রজেক্ট</span>
             </div>
         </div>
 
@@ -108,7 +97,7 @@
                     <thead>
                         <tr class="bg-slate-100 text-slate-700 text-xs sm:text-sm border-b border-slate-200">
                             <th class="p-3 font-semibold">ওয়ার্ড</th>
-                            <th class="p-3 font-semibold">প্রকল্পের বিষয় ও মূল বিবরণ</th>
+                            <th class="p-3 font-semibold">প্রকল্পের নাম ও পাস হওয়া বিবরণ</th>
                             <th class="p-3 font-semibold">বরাদ্দ / পরিমাণ</th>
                             <th class="p-3 font-semibold">ফলাফল</th>
                         </tr>
